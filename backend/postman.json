@@ -1,0 +1,1021 @@
+{
+    "info": {
+      "_postman_id": "c8e3b5c5-f9c6-42e7-a4be-36e9de12f8a1",
+      "name": "Status Page API",
+      "description": "API collection for testing the Status Page backend application",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Authentication",
+        "description": "Endpoints for user authentication",
+        "item": [
+          {
+            "name": "Register User",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\",\n    \"organizationName\": \"Test Company\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/auth/register",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "auth", "register"]
+              },
+              "description": "Register a new user and organization"
+            },
+            "response": []
+          },
+          {
+            "name": "Login User",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/auth/login",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "auth", "login"]
+              },
+              "description": "Login a user"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Current User",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/auth/me",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "auth", "me"]
+              },
+              "description": "Get current logged-in user"
+            },
+            "response": []
+          },
+          {
+            "name": "Logout User",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/auth/logout",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "auth", "logout"]
+              },
+              "description": "Logout a user"
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Services",
+        "description": "Endpoints for service management",
+        "item": [
+          {
+            "name": "Get All Services",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/services",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "services"]
+              },
+              "description": "Get all services for the organization"
+            },
+            "response": []
+          },
+          {
+            "name": "Create Service",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"API\",\n    \"description\": \"Main API Service\",\n    \"group\": \"Core Services\",\n    \"status\": \"operational\",\n    \"isPublic\": true\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/services",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "services"]
+              },
+              "description": "Create a new service"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Service by ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/services/{{serviceId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "services", "{{serviceId}}"]
+              },
+              "description": "Get a single service by ID"
+            },
+            "response": []
+          },
+          {
+            "name": "Update Service",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"API Service\",\n    \"description\": \"Updated API Service Description\",\n    \"status\": \"degraded_performance\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/services/{{serviceId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "services", "{{serviceId}}"]
+              },
+              "description": "Update a service"
+            },
+            "response": []
+          },
+          {
+            "name": "Delete Service",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/services/{{serviceId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "services", "{{serviceId}}"]
+              },
+              "description": "Delete a service"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Public Services",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/services/public/{{organizationId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "services", "public", "{{organizationId}}"]
+              },
+              "description": "Get public services for an organization"
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Incidents",
+        "description": "Endpoints for incident management",
+        "item": [
+          {
+            "name": "Get All Incidents",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/incidents",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "incidents"],
+                "query": [
+                  {
+                    "key": "status",
+                    "value": "investigating",
+                    "disabled": true
+                  },
+                  {
+                    "key": "service",
+                    "value": "{{serviceId}}",
+                    "disabled": true
+                  }
+                ]
+              },
+              "description": "Get all incidents for the organization"
+            },
+            "response": []
+          },
+          {
+            "name": "Create Incident",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"API Outage\",\n    \"status\": \"investigating\",\n    \"impact\": \"major\",\n    \"services\": [\"{{serviceId}}\"],\n    \"message\": \"We are investigating an issue with the API service.\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/incidents",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "incidents"]
+              },
+              "description": "Create a new incident"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Incident by ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/incidents/{{incidentId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "incidents", "{{incidentId}}"]
+              },
+              "description": "Get a single incident by ID"
+            },
+            "response": []
+          },
+          {
+            "name": "Update Incident",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"status\": \"identified\",\n    \"impact\": \"major\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/incidents/{{incidentId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "incidents", "{{incidentId}}"]
+              },
+              "description": "Update an incident"
+            },
+            "response": []
+          },
+          {
+            "name": "Add Incident Update",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"status\": \"monitoring\",\n    \"message\": \"We have fixed the issue and are monitoring the service.\",\n    \"notify\": true\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/incidents/{{incidentId}}/updates",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "incidents", "{{incidentId}}", "updates"]
+              },
+              "description": "Add an update to an incident"
+            },
+            "response": []
+          },
+          {
+            "name": "Delete Incident",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/incidents/{{incidentId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "incidents", "{{incidentId}}"]
+              },
+              "description": "Delete an incident"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Public Incidents",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/incidents/public/{{organizationId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "incidents", "public", "{{organizationId}}"],
+                "query": [
+                  {
+                    "key": "status",
+                    "value": "investigating",
+                    "disabled": true
+                  }
+                ]
+              },
+              "description": "Get public incidents for an organization"
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Maintenance",
+        "description": "Endpoints for maintenance management",
+        "item": [
+          {
+            "name": "Get All Maintenances",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/maintenance",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "maintenance"],
+                "query": [
+                  {
+                    "key": "status",
+                    "value": "scheduled",
+                    "disabled": true
+                  },
+                  {
+                    "key": "service",
+                    "value": "{{serviceId}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "from",
+                    "value": "2023-04-01",
+                    "disabled": true
+                  },
+                  {
+                    "key": "to",
+                    "value": "2023-04-30",
+                    "disabled": true
+                  }
+                ]
+              },
+              "description": "Get all maintenance events for the organization"
+            },
+            "response": []
+          },
+          {
+            "name": "Create Maintenance",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Database Upgrade\",\n    \"status\": \"scheduled\",\n    \"services\": [\"{{serviceId}}\"],\n    \"scheduledStartTime\": \"2023-04-15T02:00:00Z\",\n    \"scheduledEndTime\": \"2023-04-15T04:00:00Z\",\n    \"description\": \"We will be performing a database upgrade to improve performance.\",\n    \"notify\": true\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/maintenance",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "maintenance"]
+              },
+              "description": "Create a new maintenance event"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Maintenance by ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/maintenance/{{maintenanceId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "maintenance", "{{maintenanceId}}"]
+              },
+              "description": "Get a single maintenance event by ID"
+            },
+            "response": []
+          },
+          {
+            "name": "Update Maintenance",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"status\": \"in_progress\",\n    \"scheduledStartTime\": \"2023-04-15T02:30:00Z\",\n    \"scheduledEndTime\": \"2023-04-15T04:30:00Z\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/maintenance/{{maintenanceId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "maintenance", "{{maintenanceId}}"]
+              },
+              "description": "Update a maintenance event"
+            },
+            "response": []
+          },
+          {
+            "name": "Add Maintenance Update",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"status\": \"in_progress\",\n    \"message\": \"Maintenance has started. The database is currently being upgraded.\",\n    \"notify\": true\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/maintenance/{{maintenanceId}}/updates",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "maintenance", "{{maintenanceId}}", "updates"]
+              },
+              "description": "Add an update to a maintenance event"
+            },
+            "response": []
+          },
+          {
+            "name": "Delete Maintenance",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/maintenance/{{maintenanceId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "maintenance", "{{maintenanceId}}"]
+              },
+              "description": "Delete a maintenance event"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Public Maintenances",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/maintenance/public/{{organizationId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "maintenance", "public", "{{organizationId}}"],
+                "query": [
+                  {
+                    "key": "upcoming",
+                    "value": "true",
+                    "disabled": true
+                  }
+                ]
+              },
+              "description": "Get public maintenance events for an organization"
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Teams",
+        "description": "Endpoints for team management",
+        "item": [
+          {
+            "name": "Get All Teams",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/teams",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "teams"]
+              },
+              "description": "Get all teams for the organization"
+            },
+            "response": []
+          },
+          {
+            "name": "Create Team",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"DevOps Team\",\n    \"description\": \"Team responsible for infrastructure\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/teams",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "teams"]
+              },
+              "description": "Create a new team"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Team by ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/teams/{{teamId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "teams", "{{teamId}}"]
+              },
+              "description": "Get a single team by ID"
+            },
+            "response": []
+          },
+          {
+            "name": "Update Team",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"DevOps & SRE Team\",\n    \"description\": \"Team responsible for infrastructure and reliability\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/teams/{{teamId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "teams", "{{teamId}}"]
+              },
+              "description": "Update a team"
+            },
+            "response": []
+          },
+          {
+            "name": "Add Team Member",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"jane@example.com\",\n    \"role\": \"member\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/teams/{{teamId}}/members",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "teams", "{{teamId}}", "members"]
+              },
+              "description": "Add a member to a team"
+            },
+            "response": []
+          },
+          {
+            "name": "Remove Team Member",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/teams/{{teamId}}/members/{{userId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "teams", "{{teamId}}", "members", "{{userId}}"]
+              },
+              "description": "Remove a member from a team"
+            },
+            "response": []
+          },
+          {
+            "name": "Delete Team",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/teams/{{teamId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "teams", "{{teamId}}"]
+              },
+              "description": "Delete a team"
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Organizations",
+        "description": "Endpoints for organization management",
+        "item": [
+          {
+            "name": "Get Organization",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/organizations/{{organizationId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "organizations", "{{organizationId}}"]
+              },
+              "description": "Get organization details"
+            },
+            "response": []
+          },
+          {
+            "name": "Update Organization",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Updated Company Name\",\n    \"domain\": \"example.com\",\n    \"logo\": \"https://example.com/logo.png\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/organizations/{{organizationId}}",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "organizations", "{{organizationId}}"]
+              },
+              "description": "Update organization details"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Organization Members",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/organizations/{{organizationId}}/members",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "organizations", "{{organizationId}}", "members"]
+              },
+              "description": "Get organization members"
+            },
+            "response": []
+          },
+          {
+            "name": "Get Organization Stats",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{baseUrl}}/api/organizations/{{organizationId}}/stats",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "organizations", "{{organizationId}}", "stats"]
+              },
+              "description": "Get organization statistics"
+            },
+            "response": []
+          },
+          {
+            "name": "Update Organization Settings",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{token}}"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"timezone\": \"America/New_York\",\n    \"dateFormat\": \"US\",\n    \"themeColor\": \"#4A90E2\",\n    \"allowSubscribers\": true\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/api/organizations/{{organizationId}}/settings",
+                "host": ["{{baseUrl}}"],
+                "path": ["api", "organizations", "{{organizationId}}", "settings"]
+              },
+              "description": "Update organization settings"
+            },
+            "response": []
+          }
+        ]
+      }
+    ],
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            ""
+          ]
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "// Auto-save JWT token from login response",
+            "if (pm.response.code === 200 || pm.response.code === 201) {",
+            "    const jsonResponse = pm.response.json();",
+            "    if (jsonResponse && jsonResponse.success && jsonResponse.token) {",
+            "        pm.environment.set('token', jsonResponse.token);",
+            "        ",
+            "        // If user data is available, save organization ID",
+            "        if (jsonResponse.user && jsonResponse.user.organization) {",
+            "            pm.environment.set('organizationId', jsonResponse.user.organization);",
+            "        }",
+            "    }",
+            "    ",
+            "    // For service creation response, save serviceId",
+            "    if (jsonResponse && jsonResponse.success && jsonResponse.data && pm.request.url.toString().includes('/api/services') && pm.request.method === 'POST') {",
+            "        pm.environment.set('serviceId', jsonResponse.data._id);",
+            "    }",
+            "    ",
+            "    // For incident creation response, save incidentId",
+            "    if (jsonResponse && jsonResponse.success && jsonResponse.data && pm.request.url.toString().includes('/api/incidents') && pm.request.method === 'POST') {",
+            "        pm.environment.set('incidentId', jsonResponse.data._id);",
+            "    }",
+            "    ",
+            "    // For maintenance creation response, save maintenanceId",
+          "    if (jsonResponse && jsonResponse.success && jsonResponse.data && pm.request.url.toString().includes('/api/maintenance') && pm.request.method === 'POST') {",
+          "        pm.environment.set('maintenanceId', jsonResponse.data._id);",
+          "    }",
+          "    ",
+          "    // For team creation response, save teamId",
+          "    if (jsonResponse && jsonResponse.success && jsonResponse.data && pm.request.url.toString().includes('/api/teams') && pm.request.method === 'POST') {",
+          "        pm.environment.set('teamId', jsonResponse.data._id);",
+          "    }",
+          "}",
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}
