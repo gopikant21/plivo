@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const data: ApiResponse<User> = await response.json();
       
-      if (data.success && data.token && data.data) {
+      if (data.success && data.token) {
         localStorage.setItem('auth_token', data.token);
         setToken(data.token);
         setUser(data.data);
@@ -71,7 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const data: ApiResponse<User> = await response.json();
       
-      if (data.success && data.token && data.data) {
+      if (data.success && data.token) {
         localStorage.setItem('auth_token', data.token);
         setToken(data.token);
         setUser(data.data);
@@ -105,7 +105,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     setIsLoading(true);
     try {
-      const response = await fetch('/api/auth/me', {
+      const response = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/me`, {
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`

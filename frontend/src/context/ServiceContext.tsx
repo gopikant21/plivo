@@ -91,8 +91,8 @@ export function ServiceProvider({ children }: { children: ReactNode }) {
     try {
       // For demo purpose, use mock data instead of actual API call
       // In a real app, you would make a fetch request to your API
-      /*
-      const response = await fetch('/api/services', {
+      
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/services`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -103,7 +103,7 @@ export function ServiceProvider({ children }: { children: ReactNode }) {
       } else {
         setError(data.message || 'Failed to fetch services');
       }
-      */
+      
       
       // Using mock data
       setTimeout(() => {
