@@ -14,6 +14,7 @@ import Incidents from "./pages/Incidents";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import { AddNewServiceForm } from "./components/services/AddNewServiceForm";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/services" element={<Services />} />
+                <Route path="/services/new" element={<AddNewServiceForm />} />
                 <Route path="/incidents" element={<Incidents />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />

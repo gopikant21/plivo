@@ -1,10 +1,10 @@
-
 // Common response type
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;
   message?: string;
   token?: string;
+  user?: T;
 }
 
 // Auth Types
@@ -14,7 +14,7 @@ export interface User {
   lastName: string;
   email: string;
   organization: string;
-  role: 'owner' | 'admin' | 'member';
+  role: "owner" | "admin" | "member";
   createdAt: string;
   updatedAt: string;
 }
@@ -58,6 +58,12 @@ export interface OrganizationSettings {
 }
 
 // Service Types
+export type ServiceStatus =
+  | "operational"
+  | "degraded_performance"
+  | "partial_outage"
+  | "major_outage";
+
 export interface Service {
   id: string;
   name: string;
@@ -69,8 +75,6 @@ export interface Service {
   createdAt: string;
   updatedAt: string;
 }
-
-export type ServiceStatus = 'operational' | 'degraded_performance' | 'partial_outage' | 'major_outage' | 'maintenance' | 'unknown';
 
 // Incident Types
 export interface Incident {
@@ -86,8 +90,12 @@ export interface Incident {
   updatedAt: string;
 }
 
-export type IncidentStatus = 'investigating' | 'identified' | 'monitoring' | 'resolved';
-export type IncidentImpact = 'minor' | 'major' | 'critical';
+export type IncidentStatus =
+  | "investigating"
+  | "identified"
+  | "monitoring"
+  | "resolved";
+export type IncidentImpact = "minor" | "major" | "critical";
 
 export interface IncidentUpdate {
   id: string;
@@ -114,7 +122,11 @@ export interface Maintenance {
   updatedAt: string;
 }
 
-export type MaintenanceStatus = 'scheduled' | 'in_progress' | 'completed' | 'cancelled';
+export type MaintenanceStatus =
+  | "scheduled"
+  | "in_progress"
+  | "completed"
+  | "cancelled";
 
 export interface MaintenanceUpdate {
   id: string;
@@ -138,6 +150,6 @@ export interface Team {
 export interface TeamMember {
   id: string;
   user: string;
-  role: 'admin' | 'member';
+  role: "admin" | "member";
   addedAt: string;
 }
