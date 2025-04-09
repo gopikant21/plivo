@@ -46,6 +46,7 @@ export function Layout({ children, title = "Status Beacon" }: LayoutProps) {
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Services", href: "/services", icon: Server },
     { name: "Incidents", href: "/incidents", icon: AlertTriangle },
+    { name: "Team", href: "/team", icon: Users},
     { name: "Users", href: "/users", icon: Users },
     { name: "Analytics", href: "/analytics", icon: BarChart2 },
     { name: "Settings", href: "/settings", icon: Settings },
